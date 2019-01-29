@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from .models import Car, Offer
+import logging
 
 def index(request):
     template = loader.get_template('rent/index.html')
@@ -13,12 +14,14 @@ def rents(request):
     context = { 'offers' : offers}
     return HttpResponse(template.render(context, request))
 
-def details(request, offerId):
-    offer = Offer.objects.filter(offerId = offerId)
+def details(request, offerUUID):
+    offer = Offer.objects.get(pk=offerUUID)
     template = loader.get_template('rent/details.html')
     context = { 'offer' : offer }
     return HttpResponse(template.render(context, request))
 
 def contact(request):
-    return HttpResponse("Contact")
+    template = loader.get_template('rent/contact.html')
+    context = { 'offer' : "asd" }
+    return HttpResponse(template.render(context, request))
 

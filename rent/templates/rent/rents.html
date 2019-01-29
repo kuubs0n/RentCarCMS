@@ -1,4 +1,4 @@
-{% load static %}
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 <div class="container">
@@ -24,17 +24,19 @@
       <p class="lead">Only with us for a small amount of money you can rent a car</p>
     </div>
 
-    {% for offer in offers %}
-    <div class="card" style="width: 18rem;">
-            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-            <div class="card-body">
-              <h5 class="card-title">{{offer.car.brand}} {{offer.car.name}}</h5>
-              <img src="{% static 'images/bmwm2_1.jpg' %}" width="100%" height="10%"/>
-              <p class="card-text">{{offer.car.description}}</p>
-              <a href="{% url 'details' offer.offerId %}" class="btn btn-primary">Details</a>
+    <div class="d-flex justify-content-center">
+      {% for offer in offers %}
+      <div class="card" style="width: 18rem; justify-content: center">
+              <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+              <div class="card-body">
+                <h5 class="card-title">{{offer.car.brand}} {{offer.car.name}}</h5>
+                <img src="{{offer.car.photo.url}}" alt="" width="100%" height="15%"/>
+                <p class="card-text">{{offer.car.description}}</p>
+                <a href="{% url 'details' offer.offerUUID %}" class="btn btn-primary">Details</a>
+              </div>
             </div>
-          </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
 
     <footer class="footer">
       <p>&copy; Company 2017</p>

@@ -6,5 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('rents', views.rents, name='rents'),
     path('contact', views.contact, name='contact'),
-    path('details/<int:offerId>', views.details, name='details')
+    path('details/<uuid:offerUUID>', views.details, name='details')
 ]

@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 class Car(models.Model):
@@ -5,21 +6,22 @@ class Car(models.Model):
         ("RED", "Red"), ("BLUE", "Blue"), ("BLACK", "Black"), ("WHITE", "White"), ("GREEN", "Green"), ("BROWN", "Brown"), ("ORANGE", "Orange")
     )
 
-    carId = models.AutoField(primary_key=True, default=0)
+    carUUID = models.UUIDField(primary_key = True, default = uuid.uuid4, editable=False)
     brand = models.CharField(max_length=20)
     name = models.CharField(max_length=20)
-    productionYear = models.DateTimeField()
-    course = models.IntegerField()
+    productionYear = models.IntegerField(default=0)
+    course = models.IntegerField(default=100)
     engineCapacity = models.DecimalField(max_digits=2, decimal_places=1)
-    power = models.IntegerField()
+    power = models.IntegerField(default=0)
     color = models.CharField(max_length=10, choices=COLOR_CHOICES, default="WHITE")
     description = models.CharField(max_length=100, default="")
+    photo = models.ImageField(blank=True, upload_to='gallery')
 
     def __str__(self):
         return self.brand + " " + self.name
 
 class Offer(models.Model):
-    offerId = models.AutoField(primary_key=True, default=0)
+    offerUUID = models.UUIDField(primary_key = True, default = uuid.uuid4, editable=False)
     available = models.BooleanField()
     car = models.ForeignKey(Car, on_delete=models.SET_NULL, null=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
