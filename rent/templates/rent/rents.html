@@ -31,9 +31,16 @@
             <h5 class="card-title">{{offer.car.brand}} {{offer.car.name}}</h5>
             <div class="d-flex">
               <img src="{{offer.car.photo.url}}"height="15%" style="margin-right:8%"/>
-              
+              <div>
+                <p>Production: {{offer.car.productionYear}} </p>
+                <p>Course: {{offer.car.course}} </p>
+                <p>Engine capacity: {{offer.car.engineCapacity}} </p>
+                <p>Power (HP): {{offer.car.power}} </p>
+                <p>Color: {{offer.car.color}} </p>
+                
+                <p class="card-text">{{offer.car.description}}</p>
+              </div>
             </div>
-            <p class="card-text">{{offer.car.description}}</p>
             {% if offer.available %}
               <a href="{% url 'details' offer.offerUUID %}" class="btn btn-success">Details</a>
             {% else %}
