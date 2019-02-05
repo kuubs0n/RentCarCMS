@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from tinymce.models import HTMLField
 
 class Car(models.Model):
     COLOR_CHOICES = (
@@ -15,7 +16,7 @@ class Car(models.Model):
     engineCapacity = models.DecimalField(max_digits=2, decimal_places=1)
     power = models.IntegerField(default=0)
     color = models.CharField(max_length=10, choices=COLOR_CHOICES, default="WHITE")
-    description = models.CharField(max_length=100, default="")
+    description = HTMLField()
     photo = models.ImageField(blank=True, upload_to='gallery')
 
     def __str__(self):

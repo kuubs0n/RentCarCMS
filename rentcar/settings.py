@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
+    'plugins': "wordcount,preview,emotions,preview,spellchecker,",
+    'height': "400px",
+    'width': "700px",
+    'theme_advanced_buttons3' : "fontselect,fontsizeselect,emotions,preview,",
 }
 
 
