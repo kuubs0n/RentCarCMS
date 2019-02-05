@@ -24,17 +24,23 @@
       <p class="lead">Only with us for a small amount of money you can rent a car</p>
     </div>
 
-    <div class="d-flex justify-content-center">
+    <div>
       {% for offer in offers %}
-      <div class="card" style="width: 18rem; justify-content: center">
-              <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-              <div class="card-body">
-                <h5 class="card-title">{{offer.car.brand}} {{offer.car.name}}</h5>
-                <img src="{{offer.car.photo.url}}" alt="" width="100%" height="15%"/>
-                <p class="card-text">{{offer.car.description}}</p>
-                <a href="{% url 'details' offer.offerUUID %}" class="btn btn-primary">Details</a>
-              </div>
+        <div class="card" style="width: 100%; justify-content: center">
+          <div class="card-body">
+            <h5 class="card-title">{{offer.car.brand}} {{offer.car.name}}</h5>
+            <div class="d-flex">
+              <img src="{{offer.car.photo.url}}"height="15%" style="margin-right:8%"/>
+              
             </div>
+            <p class="card-text">{{offer.car.description}}</p>
+            {% if offer.available %}
+              <a href="{% url 'details' offer.offerUUID %}" class="btn btn-success">Details</a>
+            {% else %}
+              <a href="{% url 'details' offer.offerUUID %}" class="btn btn-danger">Details</a>
+            {% endif %}
+          </div>
+          </div>
       {% endfor %}
     </div>
 
